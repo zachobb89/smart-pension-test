@@ -1,18 +1,18 @@
 require_relative 'parse'
-require_relative 'views'
+require_relative 'view'
 
 class FileParser
   def initialize(file)
     parsed_file = Parse.new(file)
     entries = parsed_file.entries
-    @views = Views.new(entries)
+    @view = View.new(entries)
   end
 
-  def most_views
-    @views.most_views
+  def get_most_views
+    @view.most_views
   end
 
-  def unique_views
-    @views.unique_views
+  def get_unique_views
+    @view.unique_views
   end
 end

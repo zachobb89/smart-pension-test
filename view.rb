@@ -1,4 +1,4 @@
-class Views
+class View
   attr_reader :entries
 
   def initialize(entries)
@@ -6,23 +6,24 @@ class Views
   end
 
   def most_views
-    most_views = create_count(unique: false).sort_by { |_page, ip| ip.size }.to_h
-    @ordered_most_views = sorted_list(most_views)
-    show_view(@ordered_most_views, 'Most Views Count')
+    view_getter('Most Views Count', unique: false)
   end
 
   def unique_views
-    unique_views = create_count(unique: true).sort_by { |_page, ip| ip.size }.to_h
-    @ordered_unique_views = sorted_list(unique_views)
-    show_view(@ordered_unique_views, 'Unique Views Count')
+    view_getter('Unique Views Count', unique: true)
   end
 
   private
 
+  def view_getter(title, unique)
+    view = create_count(unique).sort_by { |_page, ip| ip.size }.to_h
+    @ordered_view = sorted_list(view)
+    show_view(@ordered_view, title)
+  end
+
   def create_count(unique:)
     @entries.each_with_object({}) do |(key, value), list|
       list[key] = unique ? value.uniq.size : value.size
-      p key
     end
   end
 
