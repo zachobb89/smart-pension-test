@@ -5,18 +5,27 @@ class View
     @entries = entries
   end
 
-  def most_views
-    view_getter('Most Views Count', unique: false)
+  def views(unique)
+    view_getter('Most Views Count', unique)
   end
 
-  def unique_views
-    view_getter('Unique Views Count', unique: true)
+  def views_indiv_page(page, unique)
+    view = most_or_unique(unique)
+    show_page_views(page, view)
   end
 
   private
 
+  def most_or_unique(unique)
+    create_count(unique).sort_by { |_page, ip| ip.size }.to_h
+  end
+
+  def show_page_views(page, view)
+    view.slice(page)
+  end
+
   def view_getter(title, unique)
-    view = create_count(unique).sort_by { |_page, ip| ip.size }.to_h
+    view = most_or_unique(unique)
     @ordered_view = sorted_list(view)
     show_view(@ordered_view, title)
   end
@@ -32,9 +41,9 @@ class View
   end
 
   def show_view(list, title)
-    puts title.to_s
+    title.to_s
     list.each_with_index do |(page, count), _index|
-      puts "#{page} - #{count}"
+      "#{page} - #{count}"
     end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 require './file_parser'
 
 RSpec.describe Parse do
-  let(:file_path) { 'webserver_test.log' }
+  let(:file_path) { './spec/webserver_test.log' }
   subject { described_class.new(file_path) }
 
   describe '#new' do
