@@ -56,7 +56,7 @@ RSpec.describe FileParser do
 
   describe '#get_page_unique_views' do
     let(:expected_result) do
-      {"/home"=>4}
+      { '/home' => 4 }
     end
 
     context 'when unique views of a single page is requested' do
@@ -68,7 +68,7 @@ RSpec.describe FileParser do
 
   describe '#get_page_most_views' do
     let(:expected_result) do
-      {"/home"=>4}
+      { '/home' => 4 }
     end
 
     context 'when total views of a single page is requested' do
