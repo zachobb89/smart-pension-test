@@ -23,3 +23,7 @@ When get_most_views is called on the instance of the FileParser, it is passed to
 The view_getter method then uses the create_count method to create an array from the entries, ensuring that the total count for each page is returned using a ternery operator. This list is then ordered by the sorted_list method and finally the ordered list and the title is then passed to the show_view method to display the list. 
 
 The process above is the same when get_unique_views is called on the FileParser instance, except that only unique views are counted. 
+
+Taking it further
+-
+I have added methods to find the total and unique views for a single page. 
